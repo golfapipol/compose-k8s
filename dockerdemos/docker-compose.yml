@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  web:
+    image: dockerdemos/lab-web
+    ports:
+     - "80:80"
+
+  words:
+    image: dockerdemos/lab-words
+    deploy:
+      replicas: 5
+      endpoint_mode: dnsrr
+      resources:
+        limits:
+          memory: 16M
+        reservations:
+          memory: 16M
+
+  db:
+    image: dockerdemos/lab-db
